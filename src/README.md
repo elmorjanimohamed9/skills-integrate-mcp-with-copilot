@@ -5,7 +5,10 @@ A super simple FastAPI application that allows students to view and sign up for 
 ## Features
 
 - View all available extracurricular activities
-- Sign up for activities
+- Teacher login/logout (admin mode)
+- Teachers can sign up students for activities
+- Teachers can unregister students from activities
+- Students can still view activities and participants in read-only mode
 
 ## Getting Started
 
@@ -30,7 +33,20 @@ A super simple FastAPI application that allows students to view and sign up for 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| GET    | `/auth/status`                                                    | Get current authentication status                                   |
+| POST   | `/auth/login`                                                     | Log in as teacher                                                   |
+| POST   | `/auth/logout`                                                    | Log out current teacher session                                     |
+| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Register a student (teacher-only)                                   |
+| DELETE | `/activities/{activity_name}/unregister?email=student@mergington.edu` | Unregister a student (teacher-only)                                 |
+
+## Teacher Credentials
+
+Teacher usernames and passwords are stored in `teachers.json`.
+
+Default demo accounts:
+
+- Username: `mrs.johnson` / Password: `teach123`
+- Username: `mr.lee` / Password: `classroom456`
 
 ## Data Model
 
